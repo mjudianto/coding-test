@@ -29,7 +29,7 @@ export default function Home() {
       const data = await response.json();
       setAnswer(data.answer);
     } catch (error) {
-      console.error("Error in AI request:", error);
+      console.error("Error in AI requesttt:", error);
     }
   };
 
