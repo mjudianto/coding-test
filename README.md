@@ -56,4 +56,44 @@
 
 ---
 
+**Design Choice**
+Main Page
+- Interactive world map with clickable user location dots
+- Clicking a dot filters the data panel to show users in that region
+Includes:
+  - Search bar
+  - Filters synced with the map
+  - Ask AI panel using Google Gemini AI for questions about the data
+  - Custom loading animation and no-data animation
+  - A 1-second delay is added to simulate data fetching and show the loading effect
+
+Displays detailed user profile information
+Tabs for:
+  - User’s clients
+  - User’s deals
+
+Clients Page
+  - Lists all clients and their company information
+  - Includes badge-based filtering system
+
+Deals Page
+Mini-dashboard includes:
+  - Deal status classification
+  - Total count and value of deals
+  - Interactive table supports:
+    - Column sorting
+    - Search
+    - Filtering
+
+**Improvement That Can Be Made**
+Improvement that can be made : 
+- UI/UX Enhancements: More engaging animations and transitions
+- Data Enrichment: Add timestamps to deals to unlock time-based filtering and analytics
+- Advanced Filtering: Group and filter data by date ranges or custom criteria
+- AI-Powered Insights: Use modern AI to:
+  - Forecast sales
+  - Predict customer churn
+  - Provide automated insights and summaries
+
+
 **Thank You**
