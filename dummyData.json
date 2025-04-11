@@ -1,85 +1,258 @@
 {
-    "salesReps": [
-      {
-        "id": 1,
-        "name": "Alice",
-        "role": "Senior Sales Executive",
-        "region": "North America",
-        "skills": ["Negotiation", "CRM", "Client Relations"],
-        "deals": [
-          { "client": "Acme Corp", "value": 120000, "status": "Closed Won" },
-          { "client": "Beta Ltd", "value": 50000, "status": "In Progress" },
-          { "client": "Omega Inc", "value": 85000, "status": "Closed Lost" }
-        ],
-        "clients": [
-          { "name": "Acme Corp", "industry": "Manufacturing", "contact": "alice@acmecorp.com" },
-          { "name": "Beta Ltd", "industry": "Retail", "contact": "contact@betaltd.com" }
-        ]
-      },
-      {
-        "id": 2,
-        "name": "Bob",
-        "role": "Sales Representative",
-        "region": "Europe",
-        "skills": ["Lead Generation", "Presentation", "Negotiation"],
-        "deals": [
-          { "client": "Gamma Inc", "value": 75000, "status": "Closed Lost" },
-          { "client": "Delta LLC", "value": 90000, "status": "Closed Won" },
-          { "client": "Sigma Corp", "value": 65000, "status": "In Progress" }
-        ],
-        "clients": [
-          { "name": "Gamma Inc", "industry": "Tech", "contact": "info@gammainc.com" },
-          { "name": "Delta LLC", "industry": "Finance", "contact": "support@deltallc.com" }
-        ]
-      },
-      {
-        "id": 3,
-        "name": "Charlie",
-        "role": "Account Manager",
-        "region": "Asia-Pacific",
-        "skills": ["Customer Service", "Sales Strategy", "Data Analysis"],
-        "deals": [
-          { "client": "Epsilon Ltd", "value": 110000, "status": "In Progress" },
-          { "client": "Zeta Corp", "value": 60000, "status": "Closed Won" },
-          { "client": "Theta Enterprises", "value": 70000, "status": "Closed Lost" }
-        ],
-        "clients": [
-          { "name": "Epsilon Ltd", "industry": "Healthcare", "contact": "contact@epsilonltd.com" },
-          { "name": "Zeta Corp", "industry": "Finance", "contact": "sales@zetacorp.com" }
-        ]
-      },
-      {
-        "id": 4,
-        "name": "Dana",
-        "role": "Business Development Manager",
-        "region": "South America",
-        "skills": ["Strategic Partnerships", "Negotiation", "Market Analysis"],
-        "deals": [
-          { "client": "Eta Co", "value": 130000, "status": "In Progress" },
-          { "client": "Theta Inc", "value": 80000, "status": "Closed Won" },
-          { "client": "Iota Group", "value": 55000, "status": "Closed Lost" }
-        ],
-        "clients": [
-          { "name": "Eta Co", "industry": "Energy", "contact": "info@etaco.com" },
-          { "name": "Theta Inc", "industry": "Telecommunications", "contact": "sales@thetainc.com" }
-        ]
-      },
-      {
-        "id": 5,
-        "name": "Eve",
-        "role": "Regional Sales Manager",
-        "region": "Middle East",
-        "skills": ["Relationship Building", "Negotiation", "Market Expansion"],
-        "deals": [
-          { "client": "Iota Ltd", "value": 95000, "status": "Closed Won" },
-          { "client": "Kappa LLC", "value": 45000, "status": "In Progress" },
-          { "client": "Lambda Partners", "value": 105000, "status": "Closed Lost" }
-        ],
-        "clients": [
-          { "name": "Iota Ltd", "industry": "Hospitality", "contact": "contact@iotaltd.com" },
-          { "name": "Kappa LLC", "industry": "Retail", "contact": "info@kappallc.com" }
-        ]
-      }
-    ]
-  }
-  
+  "salesReps": [
+    {
+      "id": 1,
+      "name": "Alice",
+      "role": "Senior Sales Executive",
+      "region": "North America",
+      "skills": ["Negotiation", "CRM", "Client Relations"],
+      "deals": [
+        { "client": "Acme Corp", "value": 120000, "status": "Closed Won" },
+        { "client": "Beta Ltd", "value": 50000, "status": "In Progress" },
+        { "client": "Omega Inc", "value": 85000, "status": "Closed Lost" },
+        { "client": "Gamma Inc", "value": 95000, "status": "Closed Won" },
+        { "client": "Delta Corp", "value": 120000, "status": "In Progress" }
+      ],
+      "clients": [
+        { "name": "Acme Corp", "industry": "Manufacturing", "contact": "alice@acmecorp.com" },
+        { "name": "Beta Ltd", "industry": "Retail", "contact": "contact@betaltd.com" },
+        { "name": "Gamma Inc", "industry": "Tech", "contact": "alice@gammainc.com" },
+        { "name": "Delta Corp", "industry": "Automotive", "contact": "support@deltacorp.com" }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Bob",
+      "role": "Sales Representative",
+      "region": "Europe",
+      "skills": ["Lead Generation", "Presentation", "Negotiation"],
+      "deals": [
+        { "client": "Gamma Inc", "value": 75000, "status": "Closed Lost" },
+        { "client": "Delta LLC", "value": 90000, "status": "Closed Won" },
+        { "client": "Sigma Corp", "value": 65000, "status": "In Progress" },
+        { "client": "Zeta Ltd", "value": 50000, "status": "Closed Won" },
+        { "client": "Theta AG", "value": 100000, "status": "In Progress" }
+      ],
+      "clients": [
+        { "name": "Gamma Inc", "industry": "Tech", "contact": "info@gammainc.com" },
+        { "name": "Delta LLC", "industry": "Finance", "contact": "support@deltallc.com" },
+        { "name": "Zeta Ltd", "industry": "Healthcare", "contact": "info@zetaltd.com" },
+        { "name": "Theta AG", "industry": "Logistics", "contact": "contact@thetaag.com" }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Charlie",
+      "role": "Account Manager",
+      "region": "Asia-Pacific",
+      "skills": ["Customer Service", "Sales Strategy", "Data Analysis"],
+      "deals": [
+        { "client": "Epsilon Ltd", "value": 110000, "status": "In Progress" },
+        { "client": "Zeta Corp", "value": 60000, "status": "Closed Won" },
+        { "client": "Theta Enterprises", "value": 70000, "status": "Closed Lost" },
+        { "client": "Delta AG", "value": 80000, "status": "Closed Won" },
+        { "client": "Kappa Ltd", "value": 95000, "status": "In Progress" }
+      ],
+      "clients": [
+        { "name": "Epsilon Ltd", "industry": "Healthcare", "contact": "contact@epsilonltd.com" },
+        { "name": "Zeta Corp", "industry": "Finance", "contact": "sales@zetacorp.com" },
+        { "name": "Delta AG", "industry": "Automotive", "contact": "contact@deltaag.com" },
+        { "name": "Kappa Ltd", "industry": "Manufacturing", "contact": "info@kappaltd.com" }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Dana",
+      "role": "Business Development Manager",
+      "region": "South America",
+      "skills": ["Strategic Partnerships", "Negotiation", "Market Analysis"],
+      "deals": [
+        { "client": "Eta Co", "value": 130000, "status": "In Progress" },
+        { "client": "Theta Inc", "value": 80000, "status": "Closed Won" },
+        { "client": "Iota Group", "value": 55000, "status": "Closed Lost" },
+        { "client": "Beta Technologies", "value": 95000, "status": "In Progress" },
+        { "client": "Gamma Systems", "value": 120000, "status": "Closed Won" }
+      ],
+      "clients": [
+        { "name": "Eta Co", "industry": "Energy", "contact": "info@etaco.com" },
+        { "name": "Theta Inc", "industry": "Telecommunications", "contact": "sales@thetainc.com" },
+        { "name": "Beta Technologies", "industry": "Energy", "contact": "contact@betatechnologies.com" },
+        { "name": "Gamma Systems", "industry": "Technology", "contact": "contact@gammasystems.com" }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Eve",
+      "role": "Regional Sales Manager",
+      "region": "Middle East",
+      "skills": ["Relationship Building", "Negotiation", "Market Expansion"],
+      "deals": [
+        { "client": "Iota Ltd", "value": 95000, "status": "Closed Won" },
+        { "client": "Kappa LLC", "value": 45000, "status": "In Progress" },
+        { "client": "Lambda Partners", "value": 105000, "status": "Closed Lost" },
+        { "client": "Omega LLC", "value": 105000, "status": "In Progress" },
+        { "client": "Pi Technologies", "value": 130000, "status": "Closed Won" }
+      ],
+      "clients": [
+        { "name": "Iota Ltd", "industry": "Hospitality", "contact": "contact@iotaltd.com" },
+        { "name": "Kappa LLC", "industry": "Retail", "contact": "info@kappallc.com" },
+        { "name": "Lambda Partners", "industry": "Healthcare", "contact": "contact@lambdapartners.com" },
+        { "name": "Omega LLC", "industry": "Energy", "contact": "contact@omegallc.com" }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Frank",
+      "role": "Territory Manager",
+      "region": "Europe",
+      "skills": ["Prospecting", "CRM", "Cold Calling"],
+      "deals": [
+        { "client": "Nexus AG", "value": 78000, "status": "In Progress" },
+        { "client": "Xeno GmbH", "value": 92000, "status": "Closed Lost" },
+        { "client": "Kilo Tech", "value": 114000, "status": "Closed Won" }
+      ],
+      "clients": [
+        { "name": "Nexus AG", "industry": "Logistics", "contact": "hello@nexus.com" }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Grace",
+      "role": "Sales Consultant",
+      "region": "North America",
+      "skills": ["Closing Deals", "Tech Demo", "Forecasting"],
+      "deals": [
+        { "client": "NovaTech", "value": 98000, "status": "Closed Won" },
+        { "client": "Rho Ltd", "value": 39000, "status": "In Progress" }
+      ],
+      "clients": [
+        { "name": "NovaTech", "industry": "Software", "contact": "grace@novatech.com" }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Hank",
+      "role": "Enterprise Account Executive",
+      "region": "Asia-Pacific",
+      "skills": ["Enterprise Sales", "Solution Selling", "Budget Negotiation"],
+      "deals": [
+        { "client": "Yotta Inc", "value": 200000, "status": "Closed Won" }
+      ],
+      "clients": [
+        { "name": "Yotta Inc", "industry": "Cloud Services", "contact": "sales@yotta.com" }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Ivy",
+      "role": "Inside Sales Rep",
+      "region": "South America",
+      "skills": ["Inbound Calls", "Lead Scoring"],
+      "deals": [],
+      "clients": []
+    },
+    {
+      "id": 10,
+      "name": "Jake",
+      "role": "Channel Partner Manager",
+      "region": "Middle East",
+      "skills": ["Partnerships", "Vendor Management"],
+      "deals": [
+        { "client": "Zynox", "value": 73000, "status": "In Progress" }
+      ],
+      "clients": [
+        { "name": "Zynox", "industry": "Hardware", "contact": "contact@zynox.com" }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Kelly",
+      "role": "Sales Coordinator",
+      "region": "Europe",
+      "skills": ["Organization", "Data Entry"],
+      "deals": [],
+      "clients": []
+    },
+    {
+      "id": 12,
+      "name": "Leo",
+      "role": "Business Analyst",
+      "region": "Asia-Pacific",
+      "skills": ["Market Research", "Financial Forecasting"],
+      "deals": [],
+      "clients": []
+    },
+    {
+      "id": 13,
+      "name": "Mia",
+      "role": "Field Sales Rep",
+      "region": "South America",
+      "skills": ["Customer Interaction", "Product Demonstration"],
+      "deals": [],
+      "clients": []
+    },
+    {
+      "id": 14,
+      "name": "Nina",
+      "role": "Head of Sales",
+      "region": "North America",
+      "skills": ["Leadership", "Scaling Teams", "Revenue Growth"],
+      "deals": [],
+      "clients": []
+    },
+    {
+      "id": 15,
+      "name": "Oscar",
+      "role": "Solutions Architect",
+      "region": "Middle East",
+      "skills": ["Technical Sales", "Architecture Design"],
+      "deals": [],
+      "clients": []
+    },
+    {
+      "id": 16,
+      "name": "Paula",
+      "role": "Strategic Account Manager",
+      "region": "Europe",
+      "skills": ["Enterprise Clients", "Long-Term Planning"],
+      "deals": [],
+      "clients": []
+    },
+    {
+      "id": 17,
+      "name": "Quinn",
+      "role": "Growth Manager",
+      "region": "Asia-Pacific",
+      "skills": ["Expansion", "Retention", "Growth Marketing"],
+      "deals": [],
+      "clients": []
+    },
+    {
+      "id": 18,
+      "name": "Ralph",
+      "role": "Sales Development Rep",
+      "region": "South America",
+      "skills": ["Lead Qualifying", "Email Campaigns"],
+      "deals": [],
+      "clients": []
+    },
+    {
+      "id": 19,
+      "name": "Sara",
+      "role": "Client Success Manager",
+      "region": "North America",
+      "skills": ["Support", "Onboarding", "Satisfaction Tracking"],
+      "deals": [],
+      "clients": []
+    },
+    {
+      "id": 20,
+      "name": "Tom",
+      "role": "Enterprise Sales Lead",
+      "region": "Middle East",
+      "skills": ["Enterprise Strategy", "Big Ticket Negotiation"],
+      "deals": [],
+      "clients": []
+    }
+  ]
+}
