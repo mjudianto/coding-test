@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import WorldMapCard from "../components/WorldMapCard";
 import { Player } from "@lottiefiles/react-lottie-player";
@@ -6,21 +6,28 @@ import { Player } from "@lottiefiles/react-lottie-player";
 export default function Home() {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState("");
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
   const [selectedRegion, setSelectedRegion] = useState(null);
   const [regionIndex, setRegionIndex] = useState(0);
   const [regionLoading, setRegionLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [lottieError, setLottieError] = useState(false);
   const [aiLoading, setAiLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [input, setInput] = useState("");
+  const [messages, setMessages] = useState([]);
 
   const router = useRouter();
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
     const fetchUsers = async () => {
       setRegionLoading(true);
       setError("");
+
+      const saved = sessionStorage.getItem("chatHistory");
+      if (saved) {
+        setMessages(JSON.parse(saved));
+      }
 
       try {
         const res = await fetch("http://localhost:8000/api/data");
@@ -40,37 +47,57 @@ export default function Home() {
     fetchUsers();
   }, []);
 
-  const handleAskQuestion = async () => {
+  useEffect(() => {
+    sessionStorage.setItem("chatHistory", JSON.stringify(messages));
+  }, [messages]);
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
+  const sendMessage = () => {
+    if (!input.trim()) return;
+    setMessages((prev) => [...prev, { type: "user", text: input.trim() }]);
+    handleAskQuestion(input.trim());
+    setInput("");
+  };
+
+  // Handle Enter key
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
+
+  const handleAskQuestion = async (questionText) => {
     try {
       setAiLoading(true);
-      // Send a POST request to the FastAPI endpoint with the question
+  
       const response = await fetch("http://localhost:8000/api/ai", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question }),
+        body: JSON.stringify({ question: questionText }),
       });
   
-      // Check if the response is OK, otherwise throw an error
       if (!response.ok) throw new Error("AI request failed");
   
-      // Parse the response body as JSON
       const data = await response.json();
-
-      console.log(data);  // This accesses the text of the first part from the first candidate
+      const aiText = data?.answer || "No answer received from AI.";
   
-      // Assuming the response has an "answer" key
-      if (data && data.answer) {
-        setAnswer(data.answer);
-      } else {
-        setAnswer("No answer received from AI.");
-      }
+      setMessages((prev) => [...prev, { type: "ai", text: aiText }]);
     } catch (err) {
-      // Handle any errors that occur during the fetch process
-      setAnswer("Oops! Something went wrong while getting the answer. Please try again later.");
+      setMessages((prev) => [
+        ...prev,
+        { type: "ai", text: "Oops! Something went wrong while getting the answer." },
+      ]);
     } finally {
       setAiLoading(false);
     }
   };
+  
   
 
   const handleRegionSelect = (region) => {
@@ -92,6 +119,12 @@ export default function Home() {
       <nav className="bg-blue-600 mb-8 px-6 py-4 border border-gray-200 shadow-sm rounded-lg flex items-center justify-between">
         {/* Left - Brand with subtext */}
         <div>
+          <button
+            onClick={() => setIsOpen(true)}
+            className="fixed left-4 top-1/2 -translate-y-1/2 z-50 bg-blue-600 hover:bg-green-600 text-white w-20 h-20 rounded-full shadow-lg flex items-center justify-center"
+          >
+            Ask AI
+          </button>
           <div className="text-xl font-bold text-white tracking-tight">FastAPI Dashboard</div>
           <div className="text-xs text-white mt-1">Powered by Next.js + FastAPI</div>
         </div>
@@ -328,52 +361,99 @@ export default function Home() {
         </div>
       </div>
 
-      {/* AI Question Section */}
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Ask a Question (AI Endpoint)</h2>
-        <div className="flex items-center mb-4">
-          <input
-            type="text"
-            placeholder="Enter your question..."
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-            className="p-2 w-3/4 mr-4 border border-gray-300 rounded"
-          />
-          <button
-            onClick={handleAskQuestion}
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-          >
-            Ask
-          </button>
-        </div>
-
-        {/* Show loading message when aiLoading is true */}
-        {aiLoading ? (
-          <div className="mt-4 text-gray-600 text-lg font-medium">
-            <span className="animate-pulse">Loading...</span>
+      {/* Side Panel */}
+      <div
+        className={`fixed top-0 right-0 h-full w-80 bg-white shadow-lg border-l border-gray-200 transform transition-transform duration-300 z-40 ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex flex-col justify-between h-full">
+          {/* Header */}
+          <div className="p-4 flex items-center justify-between border-b">
+            <h2 className="text-lg font-semibold">History Chat</h2>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-gray-500 hover:text-gray-700 text-xl font-bold"
+            >
+              ×
+            </button>
           </div>
-        ) : (
-          // Show the AI response or an error message
-          answer.startsWith("Oops!") ? (
-            <div className="mt-4 p-4 bg-red-100 border-l-4 border-red-500 rounded shadow-md text-red-700">
-              <strong>Error:</strong> {answer}
-            </div>
-          ) : (
-            answer && (
-              <div className="mt-4 p-4 bg-blue-50 border-l-4 border-blue-500 rounded shadow-md text-blue-800">
-                <strong className="text-lg font-semibold">AI Response:</strong>
-                <div className="mt-2 whitespace-pre-line">
-                  {/* Allow the text to break at newlines and spaces */}
-                  {answer}
+
+          {/* Messages */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-3">
+          {messages.map((msg, i) => {
+            const idOdd = i % 2 != 0;
+            const isEnd = messages.length === i;
+            const bubbleBg = idOdd ? "bg-blue-600 text-white rounded-bl-none" : "bg-green-600 text-white rounded-br-none";
+            const tailClass = idOdd
+              ? "left-[-6px] border-r-8 border-t-transparent border-b-transparent border-r-blue-600"
+              : "right-[-6px] border-l-8 border-t-transparent border-b-transparent border-l-green-600";
+
+            return (
+              <div
+                key={i}
+                className={`flex ${idOdd ? "justify-start" : "justify-end"}`}
+              >
+                <div className="relative max-w-[80%]">
+                  <div className={`px-4 py-2 rounded-lg text-sm ${bubbleBg}`}>
+                    {msg.text}
+                  </div>
+                  <div className={`absolute top-3 w-0 h-0 border-t-8 border-b-8 ${tailClass}`} />
                 </div>
               </div>
-            )
-          )
-        )}
+            );
+          })}
+          
+          {aiLoading && (
+            <div className="flex justify-start">
+              <div className="max-w-[80%]">
+                <Player
+                  autoplay
+                  loop
+                  src="/region-loading.json"
+                  style={{ height: 100, width: 100 }}
+                  onEvent={(e) => {
+                    if (e === "error") setLottieError(true);
+                  }}
+                />
+              </div>
+            </div>
+          )}
+
+          <div ref={messagesEndRef} />
+          </div>
 
 
-      </section>
+          {/* Input */}
+          <div className="p-4 border-t">
+            <div className="flex items-center bg-gray-100 rounded-full px-4 py-2 shadow-inner">
+              <input
+                type="text"
+                placeholder="Type your message..."
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                className="flex-grow bg-transparent outline-none placeholder-gray-500 text-sm"
+              />
+              <button
+                onClick={sendMessage}
+                className="ml-3 text-blue-600 hover:text-blue-800 text-xl"
+                title="Send"
+              >
+                📨
+              </button>
+            </div>
+          </div>
+          
+        </div>
+
+
+
+        
+      </div>
 
     </div>
+
+    
   );
 }
