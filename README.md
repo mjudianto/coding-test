@@ -86,7 +86,6 @@ Mini-dashboard includes:
     - Filtering
 
 **Improvement That Can Be Made**
-Improvement that can be made : 
 - UI/UX Enhancements: More engaging animations and transitions
 - Data Enrichment: Add timestamps to deals to unlock time-based filtering and analytics
 - Advanced Filtering: Group and filter data by date ranges or custom criteria
