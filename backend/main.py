@@ -4,7 +4,6 @@ from typing import List
 import uvicorn
 import json
 import os
-import google.genai
 import requests  
 
 app = FastAPI()
