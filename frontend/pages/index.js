@@ -115,12 +115,12 @@ export default function Home() {
   };  
 
   return (
-    <div className="p-8 font-sans bg-gray-100">
+    <div className="min-h-screen w-full p-8 font-sans bg-gray-100">
       <nav className="bg-blue-600 mb-8 px-6 py-4 border border-gray-200 shadow-sm rounded-lg flex items-center justify-between">
         {/* Left - Brand with subtext */}
         <div>
           <button
-            onClick={() => setIsOpen(true)}
+            onClick={() => !isOpen ? setIsOpen(true) : setIsOpen(false)}
             className="fixed left-4 top-1/2 -translate-y-1/2 z-50 bg-blue-600 hover:bg-green-600 text-white w-20 h-20 rounded-full shadow-lg flex items-center justify-center"
           >
             Ask AI
