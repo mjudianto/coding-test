@@ -1,22 +1,22 @@
 from fastapi import APIRouter, Request, HTTPException
 from fastapi.responses import JSONResponse
-from app.services.sales_service import get_user_by_id, get_all_clients_list, get_clients
+from app.services.sales_service import get_user_by_id, get_all_clients_list, get_clients_data
 
 router = APIRouter()
 
-@router.get("/api/data")
+@router.get("/data")
 def get_data():
     try:
-        data = get_clients()
-        if not data:
-            return JSONResponse(
-                status_code=200,
-                content={
-                    "success": False,
-                    "data": data,
-                    "message": f"User Data not found."
-                }
-            )
+        clients = get_clients_data()
+
+        return JSONResponse(
+            status_code=200,
+            content={
+                "success": True,
+                "data": clients,
+                "message": "User data retrieved successfully."
+            }
+        )
     except Exception as e:
         return JSONResponse(
             status_code=500,
@@ -26,6 +26,7 @@ def get_data():
                 "message": f"Internal server error: {str(e)}"
             }
         )
+
 
 @router.get("/user/{user_id}")
 def get_user(user_id: int):
@@ -67,7 +68,7 @@ def get_clients():
             content={
                 "success": True,
                 "data": {"clients": clients},
-                "message": "Clients list retrieved successfully."
+                "message": "Clients list retrieved successfully......"
             }
         )
     except Exception as e:

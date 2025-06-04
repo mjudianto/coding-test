@@ -21,7 +21,5 @@ def get_all_clients_list():
             })
     return clients
 
-def get_clients():
-    clients = []
-    data = load_sales_data()
-    return data
+def get_clients_data():
+    return load_sales_data()

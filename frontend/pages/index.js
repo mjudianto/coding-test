@@ -30,12 +30,12 @@ export default function Home() {
       }
 
       try {
-        const res = await fetch("http://localhost:8000/api/sales/clients");
+        const res = await fetch("http://localhost:8000/api/sales/data");
         if (!res.ok) throw new Error("Network response was not ok");
 
         const data = await res.json();
         setTimeout(() => {
-          setUsers(data.salesReps || []);
+          setUsers(data.data.salesReps || []);
           setRegionLoading(false);
         }, 1000);
       } catch (err) {

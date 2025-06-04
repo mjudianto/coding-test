@@ -1,6 +1,6 @@
 import json
 
-DUMMY_DATA_PATH = "./../../dummyData.json"
+DUMMY_DATA_PATH = "./dummyData.json"
 _dummy_data_cache = None
 
 def load_sales_data():
@@ -22,5 +22,4 @@ def load_sales_data():
         print(f"Unexpected error: {e}")
         _dummy_data_cache = {"salesReps": []}
 
-    print(_dummy_data_cache)
     return _dummy_data_cache

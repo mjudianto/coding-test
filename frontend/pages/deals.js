@@ -21,14 +21,14 @@ export default function DealsDashboard() {
   const dealsPerPage = 8;
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/data")
+    fetch("http://localhost:8000/api/sales/data")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Network response was not ok");
         }
         return res.json();
       })
-      .then((res) => setData(res.salesReps))
+      .then((res) => setData(res.data.salesReps))
       .catch((err) => {
         setError("Failed to load data. Please check your connection or try again later.");
       });

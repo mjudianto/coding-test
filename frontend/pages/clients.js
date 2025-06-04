@@ -9,9 +9,9 @@ export default function ClientsPage() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/clients")
+    fetch("http://localhost:8000/api/sales/clients")
       .then((res) => res.json())
-      .then((data) => setClients(data.clients)) 
+      .then((data) => setClients(data.data.clients)) 
       .catch((err) => setError("Failed to load data. Please check your connection or try again later.")); // Fixed the typo here
   }, []);
   
