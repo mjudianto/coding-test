@@ -42,7 +42,6 @@ async def ask_ai(request: ChatbotRequest):
             }
         )
     except Exception as e:
-        print(f"Error: {str(e)}")
         return JSONResponse(
             status_code=500,
             content={

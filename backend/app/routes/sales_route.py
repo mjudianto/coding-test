@@ -72,7 +72,6 @@ def get_clients():
             }
         )
     except Exception as e:
-        print(e)
         return JSONResponse(
             status_code=500,
             content={
