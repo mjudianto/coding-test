@@ -76,7 +76,7 @@ export default function Home() {
     try {
       setAiLoading(true);
   
-      const response = await fetch("http://localhost:8000/api/ai", {
+      const response = await fetch("http://localhost:8000/api/chatbot/ai", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: questionText }),
@@ -85,7 +85,7 @@ export default function Home() {
       if (!response.ok) throw new Error("AI request failed");
   
       const data = await response.json();
-      const aiText = data?.answer || "No answer received from AI.";
+      const aiText = data?.data.answer || "No answer received from AI.";
   
       setMessages((prev) => [...prev, { type: "ai", text: aiText }]);
     } catch (err) {

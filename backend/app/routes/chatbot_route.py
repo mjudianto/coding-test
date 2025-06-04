@@ -9,9 +9,8 @@ router = APIRouter()
 @router.post("/ai")
 async def ask_ai(request: ChatbotRequest):
     try:
-        body = await request.json()
-        question = body.get("question", "")
-        
+        question = request.question
+
         if not question:
             return JSONResponse(
                 status_code=400,
@@ -31,6 +30,7 @@ async def ask_ai(request: ChatbotRequest):
                 "message": "Answer generated successfully."
             }
         )
+
 
     except ValueError:
         return JSONResponse(

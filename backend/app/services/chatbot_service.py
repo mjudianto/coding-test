@@ -1,5 +1,7 @@
 import json
 import requests
+from app.utils.load_data import load_sales_data
+
 
 GEMINI_API_KEY = "AIzaSyC6fH-iuDs89yT4v1U0Amlj4rQF-UhWmq4"
 
