@@ -54,6 +54,16 @@
      ```  
    - Open `http://localhost:3000` to view your Next.js app.
 
+4. **How To Run with docker**  
+   - Navigate to the `main` directory.  
+   ```bash
+     cd coding-test
+   ```  
+   - Build and run the containers 
+   ```bash
+     docker-compose up --build
+   ```  
+
 ---
 
 **Design Choice**
