@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Label } from "recharts";
 import { Player } from "@lottiefiles/react-lottie-player";
+import Header from '../components/PageHeader';
+
 
 const STATUS_COLORS = {
   "Closed Won": "#22c55e",
@@ -93,17 +95,7 @@ export default function DealsDashboard() {
 
   return (
     <div className="p-6 font-sans space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-800">Deals Dashboard</h1>
-        <Link href="/">
-          <button className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 font-medium rounded-md transition shadow-sm">
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-            Back to Dashboard
-          </button>
-        </Link>
-      </div>
+      <Header title={"Our Deals"}></Header>
 
       {error && (
         <div className="mb-6 text-red-600 bg-red-100 border border-red-300 p-3 rounded">
