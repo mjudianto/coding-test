@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import WorldMapCard from "../components/WorldMapCard";
 import { Player } from "@lottiefiles/react-lottie-player";
+import ChatBubble from '../components/ChatBubble';
+
 
 export default function Home() {
   const [users, setUsers] = useState([]);
@@ -381,28 +383,9 @@ export default function Home() {
 
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-3">
-          {messages.map((msg, i) => {
-            const idOdd = i % 2 != 0;
-            const isEnd = messages.length === i;
-            const bubbleBg = idOdd ? "bg-blue-600 text-white rounded-bl-none" : "bg-green-600 text-white rounded-br-none";
-            const tailClass = idOdd
-              ? "left-[-6px] border-r-8 border-t-transparent border-b-transparent border-r-blue-600"
-              : "right-[-6px] border-l-8 border-t-transparent border-b-transparent border-l-green-600";
-
-            return (
-              <div
-                key={i}
-                className={`flex ${idOdd ? "justify-start" : "justify-end"}`}
-              >
-                <div className="relative max-w-[80%]">
-                  <div className={`px-4 py-2 rounded-lg text-sm ${bubbleBg}`}>
-                    {msg.text}
-                  </div>
-                  <div className={`absolute top-3 w-0 h-0 border-t-8 border-b-8 ${tailClass}`} />
-                </div>
-              </div>
-            );
-          })}
+          {messages.map((msg, i) => (
+            <ChatBubble key={i} text={msg.text} isUser={i % 2 === 0} />
+          ))}
           
           {aiLoading && (
             <div className="flex justify-start">

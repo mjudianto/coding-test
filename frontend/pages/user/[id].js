@@ -22,10 +22,10 @@ export default function UserProfile() {
 
     const decodedId = atob(id);
 
-    fetch("http://localhost:8000/api/data")
+    fetch("http://localhost:8000/api/sales/data")
       .then((res) => res.json())
       .then((data) => {
-        const found = data.salesReps.find((u) => u.id === Number(decodedId));
+        const found = data.data.salesReps.find((u) => u.id === Number(decodedId));
         setUser(found);
       })
       .catch((err) => {
